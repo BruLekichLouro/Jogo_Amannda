@@ -1,0 +1,75 @@
+aula 142:
+characters.environment.js: linha 125, trocar:
+
+function changeGameStatud(character){
+    if((keyDown(control.up) ||keyDown(control.left)||keyDown(control.right) )&& gameConfig.status==="start") {
+        world_start.play(); //ESTA LINHA
+ initializeCharacterStatus(mario)
+    gameConfig.status= "play"
+  }
+  if(gameConfig.status==="gameover" && keyDown(control.revive)) {
+    gameConfig.status= "start"        
+  }
+}
+ PARA:
+ function changeGameStatud(character){
+    if(noseX !="" && gameConfig.status==="start" && GameStatus=="start") { 
+      document.getElementById("status").innerHTML = "Carregado";
+      world_start.play();
+    initializeCharacterStatus(mario)
+       gameConfig.status= "play"
+     }
+     if(gameConfig.status==="gameover" && keyDown(control.revive)) {
+       gameConfig.status= "start"        
+     }
+   }
+
+   Linha 77, trocar:
+   text("Pressione qualquer tecla direcional para iniciar o jogo", gameConfig.screenX/2, gameConfig.screenY/2);
+   PARA:
+   text("Pressione o botão Jogar para iniciar o jogo", gameConfig.screenX/2, gameConfig.screenY/2);
+
+   
+   Linha 289, trocar:
+   if(keyDown(control.left)){//ESTA LINHA
+    character.velocity.x-=gameConfig.moveSpeed;
+    character.changeAnimation('move');
+    character.mirrorX(-1);
+  }
+
+  PARA:
+  if(noseX < 300){
+    character.velocity.x-=gameConfig.moveSpeed;
+    character.changeAnimation('move');
+    character.mirrorX(-1);
+  }
+
+
+Linha 298, trocar:
+if(keyDown(control.right)){//ESTA LINHA
+    character.velocity.x+=gameConfig.moveSpeed;
+    character.changeAnimation('move');
+    character.mirrorX(1);
+  }
+
+PARA:
+  if(noseX > 300){
+    character.velocity.x+=gameConfig.moveSpeed;
+  character.changeAnimation('move');
+  character.mirrorX(1);
+}
+
+
+Linha 312, trocar:
+function jumping(character){
+	if( (keyWentDown(control.up)&&character.live) || (touchIsDown&&character.live) ){//ESTA LINHA
+		character.velocity.y+=gameConfig.jump;
+	}
+}
+PARA:
+function jumping(character){
+	if( (noseY < 168  &&character.live) || (touchIsDown&&character.live) ){
+    character.velocity.y+=gameConfig.jump;
+    mario_jump.play();
+	}
+}
